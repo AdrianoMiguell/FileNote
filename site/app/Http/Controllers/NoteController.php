@@ -30,6 +30,21 @@ class NoteController extends Controller
     Note::create($note);
 
     return back();
+    }
 
+    public function update(Request $request) {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'color' => 'required',
+        ],[
+            'content.required' => 'O campo :attibute é obrigatório!'
+        ]);
+
+    $note = $request->except('_token');
+
+    Note::find($request->id)->update($note);
+
+    return back();
     }
 }

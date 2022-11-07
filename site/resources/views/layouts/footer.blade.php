@@ -1,5 +1,5 @@
 <hr class="m-5 shadow">
-<footer class="d-flex justify-content-around bg-secondary bg-gradient p-3">
+<footer class="d-flex justify-content-around bg-secondary bg-gradient p-3 mt-2">
     <div class="text-center text-white ">
         <h3 style="text-shadow: 1px 1px #000000;
 ;" >File Notes</h3>
