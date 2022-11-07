@@ -27,6 +27,8 @@
             <main>
                @yield("content")
             </main>
+
+            @include('layouts.footer')
         </div>
 
         <!-- JavaScript Bundle with Popper -->

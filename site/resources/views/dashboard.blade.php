@@ -12,7 +12,7 @@
     @endif
 
     <div class="container">
-        <div class="d-flex flex-wrap justify-content-between gap-2 bg-light rounded shadow-sm border border-2 p-3 my-4 row col-2">
+        <div class="d-flex flex-wrap justify-content-center gap-2 bg-light rounded shadow-sm border border-2 p-3 my-4 col-2">
             <!-- Button trigger modal - Criar anotação -->
             <button type="button" class="btn btn-warning d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#createNote">
@@ -57,8 +57,8 @@
     <div class="d-flex flex-wrap justify-content-around gap-2">
         @forelse ($notes as $key => $note)
             <div class="card border border-2 shadow p-3 m-2 w-25" style="background-color: {{ $note->color }}">
-                <div class="card-header"> {{ $note->title }}</div>
-                <div class="card-body"> {{ $note->content }} </div>
+                <div class="card-header bg-white text-dark text-center m-1"> {{ $note->title }}</div>
+                <div class="card-body bg-white text-dark m-1"> {{ $note->content }} </div>
             </div>
         @empty
             <div class="alert alert-danger">
