@@ -32,7 +32,7 @@
                             <h5 class="modal-title" id="createNoteLabel">Criar Anotação</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('create.note') }}" method="post">
+                        <form action="{{ route('create.note') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <label>Título:</label>
@@ -41,6 +41,8 @@
                                 <textarea class="form-control" name="content" cols="30" rows="10"></textarea>
                                 <label>Cor:</label>
                                 <input class="form-control" type="color" name="color">
+                                <label>Arquivo:</label>
+                                <input class="form-control" type="file" name="image">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -59,11 +61,21 @@
             <div class="card border border-2 shadow p-3 m-2 w-25" style="background-color: {{ $note->color }}">
                 <div class="card-header bg-white text-dark text-center m-1"> {{ $note->title }}</div>
                 <div class="card-body bg-white text-dark m-1"> {{ $note->content }} </div>
+                <div class="card-body bg-white text-dark m-1"> {{ $note->image }} </div>
                 {{-- Editar e Deletar --}}
                 <div class="d-flex justify-content-around m-2">
+                    {{-- Editar --}}
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar_anotacao" data-bs-note="{{ json_encode($note) }}">
                         Editar
                     </button>
+                    {{-- Deletar --}}
+                    <form action="{{route('users.delete', $note->id)}} " method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">
+                            Deletar
+                        </button>
+                    </form>
                 </div>
             </div>
         @empty
@@ -82,7 +94,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('update.note') }}" method="post">
+                    <form action="{{ route('update.note') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" id="id">
                         <div class="modal-body">
@@ -114,7 +126,6 @@
                 document.getElementById('title').value = note.title;
                 document.getElementById('content').value = note.content;
                 document.getElementById('color').value = note.color;
-
             })
         </script>
     @endsection

@@ -21,6 +21,7 @@ class NoteController extends Controller
             'title' => 'required',
             'content' => 'required',
             'color' => 'required',
+            'image' => 'nullable'
         ],[
             'content.required' => 'O campo :attibute é obrigatório!'
         ]);
@@ -37,6 +38,7 @@ class NoteController extends Controller
             'title' => 'required',
             'content' => 'required',
             'color' => 'required',
+            'image' => 'nullable'
         ],[
             'content.required' => 'O campo :attibute é obrigatório!'
         ]);
@@ -46,5 +48,14 @@ class NoteController extends Controller
     Note::find($request->id)->update($note);
 
     return back();
+    }
+
+    // Controller para deletar anotação
+    public function delete($id)
+    {
+        $note = note::find($id);
+        $note->delete();
+
+        return back();
     }
 }
